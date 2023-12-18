@@ -198,35 +198,6 @@ def vol_chart(comm):
         st.plotly_chart(fig3, use_container_width=True)
      
 vol_chart(comm)
-
-# tu poblikujemy komentarz z yf
-@st.cache_data
-def news_stream():
-    comm_dict1 = {'EURUSD=X':'USD_EUR','CNY=X':'USD/CNY'}
-    subs = 'finance.yahoo.com'
-    news = []
-    today = date.today()
-    for label, name in comm_dict1.items():
-        Comm_news = yf.Ticker(name)
-        info = Comm_news.get_news()
-        info_link = list(info[0].values())
-
-        for i in info_link: 
-            try:
-                if subs in i:
-                    v = (today,name,i)
-                    news.append(v)
-                    news_tab = pd.DataFrame(news, columns= ['Date','Topic','Link'])
-            except TypeError:
-                   pass
-                                            
-    st.sidebar.subheader('Yahoo Finance current news review')
-    st.sidebar.write('News about '+news_tab.Topic[0])
-    st.sidebar.markdown(news_tab.Link[0])
-    st.sidebar.write('News about '+news_tab.Topic[1])
-    st.sidebar.markdown(news_tab.Link[1])   
-
-news_stream()   
                                
 col6, col7 = st.columns(2)
 with col6:
