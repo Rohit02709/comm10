@@ -26,7 +26,7 @@ set_page_config(layout="wide")
 
 # start definicji strony
 st.title('The main global economy indicators and')
-st.title('my own EUR/PLN D+5 LSTM prediction model')
+st.title('some of my own LSTM prediction models')
 
 # Definicje
 today = date.today()
