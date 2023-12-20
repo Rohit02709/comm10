@@ -143,7 +143,7 @@ def roll_avr(nums,numl):
     df_c_XDays = df_c1.iloc[xy - oil_p:xy]
       
     fig1 = px.line(df_c_XDays, x='Date', y=['Close','Short_SMA','Long_SMA'], color_discrete_map={'Close':'#d62728',
-                  'Short_SMA': '#f0f921','Long_SMA':'#0d0887'}, width=900, height=400)
+                  'Short_SMA': '#f0f921','Long_SMA':'#0d0887'}, width=1000, height=500)
     fig1.add_trace(go.Scatter(x=df_c_XDays[df_c_XDays['Buy_Signal'] == 1].Date, y=df_c_XDays[df_c_XDays['Buy_Signal'] == 1]['Short_SMA'], name='Buy_Signal', mode='markers', 
                              marker=dict(color='green', size=15, symbol='triangle-up')))
     fig1.add_trace(go.Scatter(x=df_c_XDays[df_c_XDays['Sell_Signal'] == 1].Date, y=df_c_XDays[df_c_XDays['Sell_Signal'] == 1]['Short_SMA'], name='Sell_Signal',
@@ -188,7 +188,7 @@ def stoch_oscil(K_num,D_num):
 
     df_cx_d = df_c1.iloc[xyx - cut_p:xyx]
 
-    fig2 = px.line(df_cx_d,x='Date', y=['Close'],color_discrete_map={'Close':'dodgerblue'}, width=900, height=400) #'Close':'#d62728',,'%K': '#f0f921','%D':'#0d0887'
+    fig2 = px.line(df_cx_d,x='Date', y=['Close'],color_discrete_map={'Close':'dodgerblue'}, width=1000, height=500) #'Close':'#d62728',,'%K': '#f0f921','%D':'#0d0887'
     fig2.add_trace(go.Scatter(x=df_cx_d['Date'], y=df_cx_d['Buy_Signal'], mode='markers', name='Buy Signal', marker=dict(color='green', size=15, symbol='triangle-up')))
     fig2.add_trace(go.Scatter(x=df_cx_d['Date'], y=df_cx_d['Sell_Signal'], mode='markers', name='Sell Signal', marker=dict(color='red', size=15, symbol='triangle-down')))
 
