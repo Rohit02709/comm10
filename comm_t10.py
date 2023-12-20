@@ -188,7 +188,7 @@ def stoch_oscil(K_num,D_num):
 
     df_cx_d = df_c1.iloc[xyx - cut_p:xyx]
 
-    fig2 = px.line(df_cx_d,x='Date', y=['Close'],color_discrete_map={'Close':'dodgerblue'}, width=1000, height=600) #'Close':'#d62728',,'%K': '#f0f921','%D':'#0d0887'
+    fig2 = px.line(df_cx_d,x='Date', y=['Close'],color_discrete_map={'Close':'dodgerblue'}, width=900, height=400) #'Close':'#d62728',,'%K': '#f0f921','%D':'#0d0887'
     fig2.add_trace(go.Scatter(x=df_cx_d['Date'], y=df_cx_d['Buy_Signal'], mode='markers', name='Buy Signal', marker=dict(color='green', size=15, symbol='triangle-up')))
     fig2.add_trace(go.Scatter(x=df_cx_d['Date'], y=df_cx_d['Sell_Signal'], mode='markers', name='Sell Signal', marker=dict(color='red', size=15, symbol='triangle-down')))
 
