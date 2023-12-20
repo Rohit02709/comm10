@@ -207,7 +207,7 @@ def stoch_oscil(K_num,D_num):
 stoch_oscil(K_num,D_num)
 
 # Arima - model - prognoza trendu
-def Arima_f(comm):
+def Arima_f(comm, size_a):
     data = np.asarray(df_c1['Close'][-300:]).reshape(-1, 1)
     p = 10
     d = 0
@@ -255,20 +255,20 @@ def vol_chart(comm):
      
 vol_chart(comm)
                                
-col9, col10 = st.columns(2)
+col9, col10, col11 = st.columns(3)
 with col9:
-    checkbox_value3 = st.checkbox(f'Arima model trend prediction for x days',key = "<arima_m>")
+    checkbox_value3 = st.checkbox('Arima model trend prediction for x days',key = "<arima_m>")
 
 if checkbox_value3:
     st.subheader(f'{comm} Arima model prediction')
     size_a = st.radio('Prediction for ... days ?: ', [5,4,3,2,1], horizontal=True, key = "<arima21>")
-    Arima_f(comm)    
+    Arima_f(comm,size_a)    
 
 with col10:
-    checkbox_value2 = st.checkbox(f'Own LSTM model EUR/PLN prediction for 5 days',key = "<lstm1>")
+    checkbox_value2 = st.checkbox('Own LSTM EUR/PLN D+5 prediction model',key = "<lstm1>")
 
 if checkbox_value2:
-    st.subheader('Own LSTM EUR/PLN model prediction')
+    st.subheader('Own LSTM EUR/PLN D+5 prediction model')
     val_oil = pd.read_excel('LSTM_mv.xlsx', sheet_name='D5_EUR')
     val_oil1 = val_oil[['Date','EUR/PLN','Day + 5 Prediction']] 
     fig_oil1 = px.line(val_oil1[-50:], x='Date', y=['EUR/PLN','Day + 5 Prediction'],color_discrete_map={
@@ -278,4 +278,23 @@ if checkbox_value2:
     fig_oil1.add_vline(x = today,line_width=1, line_dash="dash", line_color="black")
     fig_oil1.add_annotation(x=today , y= ['Day + 5 Prediction'], text= f'Today - {today}', showarrow=False)
     st.plotly_chart(fig_oil1)
+
+with col11:
+    checkbox_value4 = st.checkbox('Own LSTM Crude Oil D+1 prediction model results',key = "<lstm2>")    
+    
+if checkbox_value4:
+    st.subheader('Own LSTM Crude Oil D+1 prediction model results')
+    val = pd.read_excel('LSTM_mv.xlsx', sheet_name='D1_OIL')
+    val_1 = val[['Date','OIL-NYSE','Day + 1 Prediction']].iloc[:-1]
+    day_s = val_1.shape[0]
+
+    st.subheader(f'Predictions for the last {day_s} days')
+
+    fig_val = px.line(val_1, x='Date', y=['OIL-NYSE','Day + 1 Prediction'],color_discrete_map={
+                 'OIL-NYSE':'black','Day + 1 Prediction':'red'}, width=1200, height=600 ) 
+
+    fig_val.update_layout(plot_bgcolor='white',showlegend=True,xaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='Lightgrey'),
+                      yaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='Lightgrey'))
+   
+    st.plotly_chart(fig_val, use_container_width=True)
     
