@@ -149,12 +149,12 @@ def roll_avr(nums,numl):
     fig1.add_trace(go.Scatter(x=df_c_XDays[df_c_XDays['Sell_Signal'] == 1].Date, y=df_c_XDays[df_c_XDays['Sell_Signal'] == 1]['Short_SMA'], name='Sell_Signal',
                               mode='markers', marker=dict(color='red', size=15, symbol='triangle-down')))
     buy_signals = df_c_XDays[df_c_XDays['Buy_Signal'] == 1]
-    for i in buy_signals.index:
-        fig1.add_hline(y=buy_signals.loc[i, 'Short_SMA'], line_width=0.5, line_dash="dash", line_color="black")
+    #for i in buy_signals.index:
+    #    fig1.add_hline(y=buy_signals.loc[i, 'Short_SMA'], line_width=0.5, line_dash="dash", line_color="black")
 
     sell_signals = df_c_XDays[df_c_XDays['Sell_Signal'] == 1]
-    for i in sell_signals.index:
-        fig1.add_hline(y=sell_signals.loc[i, 'Short_SMA'], line_width=0.5, line_dash="dash", line_color="black")
+    #for i in sell_signals.index:
+    #    fig1.add_hline(y=sell_signals.loc[i, 'Short_SMA'], line_width=0.5, line_dash="dash", line_color="black")
     
     fig1.update_layout(xaxis=None, yaxis=None)
     st.plotly_chart(fig1, use_container_width=True)
@@ -194,12 +194,12 @@ def stoch_oscil(K_num,D_num):
 
     # Dodajemy poziome linie dla sygnałów kupna i sprzedaży
     buy_signals = df_cx_d.dropna(subset=['Buy_Signal'])
-    for i in buy_signals.index:
-        fig2.add_hline(y=buy_signals.loc[i, 'Buy_Signal'], line_width=0.5, line_dash="dash", line_color="black")
+    #for i in buy_signals.index:
+    #    fig2.add_hline(y=buy_signals.loc[i, 'Buy_Signal'], line_width=0.5, line_dash="dash", line_color="black")
 
     sell_signals = df_cx_d.dropna(subset=['Sell_Signal'])
-    for i in sell_signals.index:
-        fig2.add_hline(y=sell_signals.loc[i, 'Sell_Signal'], line_width=0.5, line_dash="dash", line_color="black")
+    #for i in sell_signals.index:
+    #    fig2.add_hline(y=sell_signals.loc[i, 'Sell_Signal'], line_width=0.5, line_dash="dash", line_color="black")
 
     fig2.update_layout(xaxis=None, yaxis=None)
     st.plotly_chart(fig2, use_container_width=True)
