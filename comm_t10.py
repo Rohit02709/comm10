@@ -244,7 +244,7 @@ def vol_chart(comm):
         V_end = (list(Co_V.index)[-1] + 1)
 
         st.subheader(comm+' Volume in NYSE')
-        Vol = st.slider('How long prices history you need?', 0, V_end, 100, key = "<volume>") 
+        Vol = st.slider('How long prices history you need?', 0, V_end, 200, key = "<volume>") 
         Co_V_XD = Co_V.iloc[V_end - Vol:V_end]
 
         fig3 = px.area(Co_V_XD, x='Date', y='Volume',color_discrete_map={'Volume':'#1f77b4'})
