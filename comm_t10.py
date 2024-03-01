@@ -271,6 +271,7 @@ if checkbox_value2:
     st.subheader('Own LSTM EUR/PLN D+5 prediction model')
     val_oil = pd.read_excel('LSTM_mv.xlsx', sheet_name='D5_EUR')
     val_oil1 = val_oil[['Date','EUR/PLN','Day + 5 Prediction']] 
+    val_oil1 = val_oil1['EUR/PLN'].replace('Nan', np.nan).astype(float)
     fig_oil1 = px.line(val_oil1[-50:], x='Date', y=['EUR/PLN','Day + 5 Prediction'],color_discrete_map={
                  'EUR/PLN':'dodgerblue','Day + 5 Prediction':'red'}, width=1000, height=500, title=f'Day + 5 EUR/PLN prediction ') 
     fig_oil1.update_layout(plot_bgcolor='white',showlegend=True,xaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='Lightgrey'),
