@@ -269,16 +269,14 @@ with col10:
 
 if checkbox_value2:
     st.subheader('Own LSTM EUR/PLN D+5 prediction model')
-    val_oil = pd.read_excel('LSTM_mv.xlsx', sheet_name='D5_EUR')
-    val_oil1 = val_oil[['Date','EUR/PLN','Day + 5 Prediction']] 
-    val_oil1 = val_oil1['EUR/PLN'].replace('Nan', np.nan).astype(float)
-    fig_oil1 = px.line(val_oil1[-50:], x='Date', y=['EUR/PLN','Day + 5 Prediction'],color_discrete_map={
-                 'EUR/PLN':'dodgerblue','Day + 5 Prediction':'red'}, width=1000, height=500, title=f'Day + 5 EUR/PLN prediction ') 
-    fig_oil1.update_layout(plot_bgcolor='white',showlegend=True,xaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='Lightgrey'),
+    val_D5E = pd.read_excel('LSTM_mv.xlsx', sheet_name='D+5_EUR')
+    val_D5EU = val_D5E[['Date','Day + 5 Prediction']]
+    fig_D5E = px.line(val_D5EU, x='Date', y=['Day + 5 Prediction'],color_discrete_map={'Day + 5 Prediction':'red'}, width=1000, height=500, 
+                  title=f'Day + 5 EUR/PLN prediction ') 
+    fig_D5E.update_layout(plot_bgcolor='white',showlegend=True,xaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='Lightgrey'),
                       yaxis=dict(showgrid=True, gridwidth=0.5, gridcolor='Lightgrey'))
-    fig_oil1.add_vline(x = today,line_width=1, line_dash="dash", line_color="black")
-    fig_oil1.add_annotation(x=today , y= ['Day + 5 Prediction'], text= f'Today - {today}', showarrow=False)
-    st.plotly_chart(fig_oil1)
+    fig_D5E.add_vline(x = today,line_width=1, line_dash="dash", line_color="black")
+    st.plotly_chart(fig_D5E)
 
 with col11:
     checkbox_value4 = st.checkbox('Own LSTM Crude Oil D+1 prediction model results',key = "<lstm2>")    
