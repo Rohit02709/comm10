@@ -268,7 +268,7 @@ with col10:
     checkbox_value2 = st.checkbox('Own LSTM EUR/PLN D+5 prediction model',key = "<lstm1>")
 
 if checkbox_value2:
-    st.subheader('Own LSTM EUR/PLN D+5 prediction model')
+    st.subheader('Own LSTM EUR/PLN D+5 prediction model (last 50 days)')
     val_D5E = pd.read_excel('LSTM_mv.xlsx', sheet_name='D5_EUR')
     val_D5EP = val_D5E[['Date','Day + 5 Prediction']][-50:]
     val_D5EU = pd.read_excel('LSTM_mv.xlsx', sheet_name='D5_EUR')
